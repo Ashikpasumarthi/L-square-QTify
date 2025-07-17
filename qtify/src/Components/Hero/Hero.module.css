@@ -1,0 +1,28 @@
+.hero {
+  /* background-color: var(--color-black); */
+  background-color: black;
+  /* height: 270px; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; */
+  /* gap: 30px; */
+  height: 17rem;
+}
+
+
+@media (min-width: 992px) {
+  .plLgCustom {
+    padding-right: 0rem !important;
+  }
+  .peLgExtra{
+    padding-left: 0rem;
+
+  }
+
+  .plLgCustom h1{
+    margin-right: -6rem;
+  }
+
+  
+}

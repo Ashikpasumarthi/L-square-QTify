@@ -1,0 +1,12 @@
+.feedbackButton {
+    cursor: pointer !important;
+    background-color: #121212 !important;
+    color: #34C94B !important;
+    border-radius: 0.7rem !important;
+    
+}
+
+.feedbackButton span{
+
+    text-transform: none !important;
+}
