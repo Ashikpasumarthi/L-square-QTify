@@ -4,7 +4,7 @@ import { fetchTabs } from '../../Slices/tabSlice';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { useState } from 'react';
+
 
 import Section from "../TopAlbums/section"
 
@@ -21,7 +21,7 @@ export default function TabsComponent() {
 
     console.log("Tabs in component", tabsLabel);
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = React.useState(0);
     // const [filterSongs, setFilterSongs] = React.useState([]);
 
     useEffect(() => {
