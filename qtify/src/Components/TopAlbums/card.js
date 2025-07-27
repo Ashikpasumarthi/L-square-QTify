@@ -17,10 +17,13 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import { useSelector } from "react-redux";
 
 import { ThemeProvider,createTheme } from '@mui/material/styles';
 
 export default function CardTile({ id, follows, image, title }) {
+  const cardDetails = useSelector((state)=>state.topAlbums.topAlbums);
+  console.log("CardTile details:", cardDetails);
   console.log("CardTile props:", { id, follows, image, title });
   const theme = createTheme();
   return (

@@ -43,7 +43,7 @@ function Navbar() {
       <div className={ `container-fluid ${styles.navbar}` }>
         <div className="row text-center align-items-center" style={ { position: "relative", top: "1rem" } }>
 
-          <div className="col text-start">
+          <div className="col text-start" style={{width: 'fit-content'}}>
             <Link to="/"><Logo /></Link>
           </div>
           <div className="col text-center">
