@@ -7,7 +7,8 @@
 .mySwiper {
     width: 100%;
     /* overflow: hidden; */
-    padding-left: 4rem;
+    /* padding-left: 1rem; */
+    padding: 0rem 0rem 0rem 3.5rem;
 }
 
 .swiper-slide {
@@ -25,7 +26,7 @@
 
 :global(.swiper-button-prev),
 :global(.swiper-button-next) {
- position: absolute;
+    position: absolute;
     top: var(--swiper-navigation-top-offset, 50%);
     width: calc(var(--swiper-navigation-size) / 44 * 27);
     height: var(--swiper-navigation-size);
@@ -47,6 +48,7 @@
     content: 'prev';
     font-size: 1.5rem;
 }
+
 :global(.swiper-button-next:after) {
     content: 'next';
     font-size: 1.5rem;

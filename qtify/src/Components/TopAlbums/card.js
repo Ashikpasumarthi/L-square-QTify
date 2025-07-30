@@ -28,7 +28,7 @@ export default function CardTile({ id, follows, image, title }) {
   const theme = createTheme();
   return (
     // <Card id={ id } sx={ { width: { md: 'min-content' }, backgroundColor: 'black',height:'16rem' } }>
-    <Card id = {id} sx={{ maxWidth: 200, width: '100%', backgroundColor: 'black' }}>
+    <Card id = {id} sx={{ maxWidth: 200, width: '100%', backgroundColor: 'black'}}>
       <CardActionArea sx={{borderRadius: '0.6rem'}}>
         <CardMedia
           component="img"
@@ -86,13 +86,13 @@ export default function CardTile({ id, follows, image, title }) {
         </ThemeProvider>
 
         <CardContent sx={{
-              position: 'absolute',
-              bottom: 0,
+              position: 'relative',
+              bottom: '2rem',
               left: 0,
               width: '100%',
               backgroundColor: 'rgba(0, 0, 0, 0.7)',
               color: 'white',
-              padding: '0.5rem',
+              padding: '0.1rem',
             }}>
             <Typography gutterBottom variant="h3" component="div" sx={{ fontSize: '0.8rem', textAlign: 'start' }}>
               { title }

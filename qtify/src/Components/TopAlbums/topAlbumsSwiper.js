@@ -9,19 +9,19 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { Autoplay, Pagination, Keyboard, Navigation } from 'swiper/modules';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import styles from './topAlbums.module.css';
 
 
-export default function TopAlbumsSwiper() {
-    let topAlbums = useSelector((state) => state.topAlbums.topAlbums);
-    console.log("Top Albums in Swiper", topAlbums);
+export default function TopAlbumsSwiper({albums}) {
+    // let topAlbums = useSelector((state) => state.topAlbums.topAlbums);
+    console.log("Top Albums in Swiper", albums);
     return (
         <div className={ styles.carouselContainer }>
 
             <Swiper
-                slidesPerView={ 7 }  // Show 7 images per slide
-                slidesPerGroup={ 7 }  // Move 7 slides at a time
+                slidesPerView={ 7 }  // Show 7 images per slide undali
+                slidesPerGroup={ 7 }  // Move 7 slides at a time undali
                 spaceBetween={ 0 }   // Adjust spacing between slides
                 speed={ 1000 }  // Slower transition (in milliseconds)
 
@@ -51,7 +51,7 @@ export default function TopAlbumsSwiper() {
                 modules={ [Autoplay, Pagination, Keyboard, Navigation] }
                 className={ styles.mySwiper }
             >
-                { topAlbums.map((album, index) => (
+                { albums.map((album, index) => (
                     // <Link to={ ele.redirect_products_url }>
 
                     <SwiperSlide key={ index }>

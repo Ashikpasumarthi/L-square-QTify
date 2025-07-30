@@ -4,9 +4,10 @@ import { fetchTabs } from '../../Slices/tabSlice';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
+import './tabs.module.css';
 
 
-import Section from "../TopAlbums/section"
+import Swiper from "../TopAlbums/topAlbumsSwiper"
 
 
 export default function TabsComponent() {
@@ -15,9 +16,9 @@ export default function TabsComponent() {
     const topAlbums = useSelector((state) => state.topAlbums.topAlbums);
     const tabsLabelRaw = useSelector((state) => state.tabs.tabs);
     const tabsLabel = React.useMemo(() => {
-        return [...tabsLabelRaw, { label: 'All' }];
+        return [{ label: 'All' },...tabsLabelRaw];
     }, [tabsLabelRaw]);
-
+    // tabsLabel.sort((a, b) => a.label.localeCompare(b.label));
 
     console.log("Tabs in component", tabsLabel);
 
@@ -58,26 +59,29 @@ export default function TabsComponent() {
 
 
     console.log('Filtered songs:', filterSongs);
+    
 
     return (
-        <div>
-            <span>Hello Kaushik</span>
-            <Box sx={ { width: '100%' } }>
-                <TabContext value={ value }>
-                    <Box sx={ { borderBottom: 1, borderColor: 'divider' } }>
-                        <TabList onChange={ handleChange }>
-                            { tabsLabel.map((tab, index) => (
-                                <Tab key={ index } label={ tab.label } value={ index } />
-                            )) }
-                        </TabList>
-                    </Box>
 
-                    <TabPanel value={ value }>
-                        <Section songs={ filterSongs } />
-                    </TabPanel>
 
-                </TabContext>
-            </Box>
-        </div >
+        <Box sx={ {
+            width: '100%', background: 'black', color: 'white',
+        } }>
+            <TabContext value={ value } sx =  {{display: 'flex', rowGap: '1rem'}}>
+                <Box sx={ { borderBottom: 1, borderColor: 'black' } }>
+                    <TabList onChange={ handleChange } >
+                        { tabsLabel.map((tab, index) => (
+                            <Tab key={ index } label={ tab.label } value={ index } style={ { color: 'white' } } />
+                        )) }
+                    </TabList>
+                </Box>
+
+                <TabPanel value={ value }>
+                    <Swiper albums={ filterSongs } />
+                </TabPanel>
+
+            </TabContext>
+        </Box>
+
     );
 }
