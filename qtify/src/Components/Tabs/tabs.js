@@ -77,7 +77,7 @@ export default function TabsComponent() {
                 </Box>
 
                 <TabPanel value={ value }>
-                    <Swiper albums={ filterSongs } />
+                    <Swiper albums={ filterSongs } type="song"/>
                 </TabPanel>
 
             </TabContext>

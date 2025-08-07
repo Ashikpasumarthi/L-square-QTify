@@ -4,9 +4,12 @@ import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import qtifyStore from './store';
+import { qtifyStore, persistor } from './store'; //persistor from './store';
 import HomePage from './Components/HomePage/homePage';
 import ErrorPage from "./errorPage";
+import CardDetail from './Components/DetailPage/detail';
+import { PersistGate } from 'redux-persist/integration/react';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,6 +19,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />
+      },
+      {
+        path: '/card/:id',
+        element: <CardDetail />
       }
     ]
   }
@@ -23,9 +30,13 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <Provider store={ qtifyStore }>
-    <RouterProvider router={ router } />
-  </Provider>
+    <PersistGate loading={ null } persistor={ persistor } >
+      <RouterProvider router={ router } />
+    </PersistGate>
+  </Provider >
+
 );
 
 console.log("App component rendered", qtifyStore.getState());

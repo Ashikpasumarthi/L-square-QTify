@@ -51,7 +51,7 @@ export default function HomePage() {
         </Box>
         {
           expandAlbums ? (<Section albums={ topAlbums } />) : (
-            <Swiper albums={ topAlbums } />
+            <Swiper albums={ topAlbums } type="topAlbums"/>
           )
         }
       </div>

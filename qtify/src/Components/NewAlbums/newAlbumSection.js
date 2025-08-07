@@ -26,7 +26,7 @@ export default function NewAlbum() {
     }, [dispatch]);
     return (
         <>
-            <Swiper albums={ newAlbums } />
+            <Swiper albums={ newAlbums } type="newAlbums"/>
         </>
     )
 }

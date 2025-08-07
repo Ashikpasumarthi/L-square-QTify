@@ -7,14 +7,14 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
 import { Autoplay, Pagination, Keyboard, Navigation } from 'swiper/modules';
 // import { useSelector } from 'react-redux';
 import styles from './topAlbums.module.css';
 
-
-export default function TopAlbumsSwiper({albums}) {
+export default function TopAlbumsSwiper({ albums, type }) {
     // let topAlbums = useSelector((state) => state.topAlbums.topAlbums);
+
+
     console.log("Top Albums in Swiper", albums);
     return (
         <div className={ styles.carouselContainer }>
@@ -58,9 +58,11 @@ export default function TopAlbumsSwiper({albums}) {
                         <CardTile
 
                             id={ album.id }
-                            follows={ album.follows }
+                            follows={ (type === "topAlbums" || type === "newAlbums") ? album.follows : album.likes }
                             image={ album.image }
                             title={ album.title }
+                            type={ type }
+
                         />
                     </SwiperSlide>
 
