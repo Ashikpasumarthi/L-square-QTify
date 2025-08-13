@@ -1,14 +1,4 @@
 
-// import React from 'react'
-
-// export default function Card() {
-//   return (
-//     <>
-//     <h1>Card</h1>
-//     </>
-//   )
-// }
-
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -29,7 +19,7 @@ export default function CardTile({ id, follows, image, title, type }) {
   let navigate = useNavigate();
   return (
     // <Card id={ id } sx={ { width: { md: 'min-content' }, backgroundColor: 'black',height:'16rem' } }>
-    <Card id={ id } sx={ { maxWidth: 200, width: '100%', backgroundColor: 'black' } } onClick={ () => navigate(`/card/:${id}?type=${type}`) }>
+    <Card id={ id } sx={ { maxWidth: 200, width: '100%', backgroundColor: 'black' } } onClick={ () => type !== 'song' && navigate(`/card/:${id}?type=${type}`) }>
       <CardActionArea sx={ { borderRadius: '0.6rem' } }>
         <CardMedia
           component="img"
