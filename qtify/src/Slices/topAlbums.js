@@ -22,7 +22,8 @@ const topAlbumSlice = createSlice({
     },
     reducers: {
         setTopAlbums: (state, action) => {
-            state.topAlbums = [...state.topAlbums, action.payload]      //when individual album is added
+            console.log("Payload being added to topAlbums:", action.payload);
+            state.topAlbums = [...state.topAlbums, action.payload]     //when individual album is added
         },
         setLoading: (state, action) => {
             state.isLoading = action.payload;

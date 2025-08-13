@@ -7,7 +7,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['navigation'],
+    whitelist: ['topAlbums','newAlbums'] // exclusively persisting topAlbums and newAlbums slices
 
 }
 const rootReducer = combineReducers(reducerMappings);

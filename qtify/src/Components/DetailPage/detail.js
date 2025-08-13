@@ -1,40 +1,32 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
+import AlbumDetail from './albumDetail';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import { Box, Button } from '@mui/material';
 const CardDetail = () => {
     const { id } = useParams();
-    console.log("Card id:" + id + "CardDetail id:" + id.split('').slice(1).join(''));
-
-
-    const topAlbums = useSelector((state) => state.topAlbums.topAlbums || []);
-
-    const rehydrated = useSelector((state) => state._persist.rehydrated);
-
-
-    // if (!rehydrated) return <div>Loading from storage...</div>;
-    // if (!topAlbums || topAlbums.length === 0) return <div>Loading albums...</div>;
-    let album;
-    console.log("Rehydrated:", rehydrated);
-    if (rehydrated) {
-        album = topAlbums.find((ele) => ele.id === id.slice(1));
-        debugger;
-
-    }
-    console.log("CardDetail album:", album);
-
-    if (!album) return <div>Album not found</div>;
-
+    const [searchParams] = useSearchParams();
+    const type = searchParams.get("type");
+    const navigate = useNavigate();   // useHistory is replated with useNavigate in react-router v6
+    console.log("CardDetail id:", id);
+    const goBack = () => {
+        navigate(-1)
+    };
     return (
-        <div style={ { padding: '20px' } }>
-            <h2>{ album.title }</h2>
-            <p><strong>Artist:</strong> { album.artist }</p>
-            <img src={ album.image } alt={ album.title } style={ { width: '300px', borderRadius: '8px' } } />
-            <p><strong>Release Year:</strong> { album.year }</p>
-            <p><strong>Genre:</strong> { album.genre }</p>
-            {/* Add any other album info you want here */ }
-        </div>
+        <Box style={ { backgroundColor: 'black', color: 'white', } } >
+            <Button onClick={ goBack } sx={ {
+                position: 'relative',
+                top: { xs: '0rem', sm: '1rem', md: '2rem' },
+                left: { xs: '2rem', sm: '4rem', md: '4.3rem' },
+                background: 'black',
+                color: 'white',
+                border: 'none',
+                fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+            } }><FaArrowAltCircleLeft /></Button>
+            <AlbumDetail id={ id } type={ type } />
+        </Box>
     );
-};
+
+}
 
 export default CardDetail;
