@@ -67,7 +67,7 @@ export default function HomePage() {
           } }><h6>New Albums</h6></Box>
         <NewAlbum />
       </div>
-      <div style={ { backgroundColor: 'black', color: 'white' } }>
+      <div style={ { backgroundColor: 'black', color: 'white',paddingBottom:'2rem',height:'auto' } }>
         <Box
           sx={ {
             display: 'flex',

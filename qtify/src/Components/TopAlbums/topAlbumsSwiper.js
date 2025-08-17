@@ -56,7 +56,7 @@ export default function TopAlbumsSwiper({ albums, type }) {
 
                     <SwiperSlide key={ index }>
                         <CardTile
-
+                            album={ album }
                             id={ album.id }
                             follows={ (type === "topAlbums" || type === "newAlbums") ? album.follows : album.likes }
                             image={ album.image }

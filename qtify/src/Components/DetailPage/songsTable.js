@@ -3,7 +3,11 @@ import { Box } from '@mui/material';
 import React from 'react';
 import SongsPagination from '../DetailPage/songsPagination';
 import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { playerActions } from '../../Slices/playerSlice';
 export default function SongsTable({ songs }) {
+    const dispatch = useDispatch();
+
     function formatDuration(duration) {
         const totalSeconds = Math.floor(duration / 1000);
         const hours = Math.floor(totalSeconds / 3600);
@@ -23,6 +27,12 @@ export default function SongsTable({ songs }) {
     let firstIndex = lastIndex - dataPerPage;
     let currentPageSongs = songs.slice(firstIndex, lastIndex);
 
+
+    function handlePlaySong(song) {
+        dispatch(playerActions.setCurrentSong(song));
+        console.log("Playing song:", song.title);
+        dispatch(playerActions.setIsPlaying(true));
+    }
     return (
         <>
             <Box sx={ { display: 'flex', justifyContent: 'flex-end', mr: 8 } }>
@@ -32,6 +42,8 @@ export default function SongsTable({ songs }) {
                 sx={ {
                     width: '93%',
                     margin: '0rem 4rem',
+                    height: 'auto',
+
                 } }
             >
 
@@ -57,7 +69,7 @@ export default function SongsTable({ songs }) {
                                 key={ index }
 
                             >
-                                <td style={ {
+                                <td onClick={ () => handlePlaySong(song) } style={ {
                                     display: 'flex', gap: '0.5rem', alignItems: 'center', borderBottom: index !== currentPageSongs.length - 1 ? '1px solid #ccc' : 'none',
                                     paddingBottom: '0.87rem'
                                 } }>

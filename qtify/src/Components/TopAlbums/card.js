@@ -10,8 +10,9 @@ import Stack from '@mui/material/Stack';
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-export default function CardTile({ id, follows, image, title, type }) {
+import { FaPlayCircle } from 'react-icons/fa';
+import { Box } from "@mui/material";
+export default function CardTile({ id, follows, image, title, type, album }) {
   const cardDetails = useSelector((state) => state.topAlbums.topAlbums);
   console.log("CardTile details:", cardDetails);
   console.log("CardTile props:", { id, follows, image, title });
@@ -73,6 +74,18 @@ export default function CardTile({ id, follows, image, title, type }) {
               label={ (type === "topAlbums" || type === "newAlbums") ? `${follows} Follows` : `${follows} Likes` }
               variant="outlined"
             />
+            <Box sx={ {
+              fontSize: '1.5rem',
+              [theme.breakpoints.up('md')]: {
+                position: 'absolute',
+                right: '1rem',
+                top: '0rem',
+
+              }
+
+            } }>
+              <FaPlayCircle />
+            </Box>
           </Stack>
         </ThemeProvider>
 
@@ -84,6 +97,7 @@ export default function CardTile({ id, follows, image, title, type }) {
           backgroundColor: 'rgba(0, 0, 0, 0.7)',
           color: 'white',
           padding: '0.1rem',
+          height:'auto'
         } }>
           <Typography gutterBottom variant="h3" component="div" sx={ { fontSize: '0.8rem', textAlign: 'start' } }>
             { title }

@@ -1,0 +1,182 @@
+/* .rhap_progress-section {
+  display: flex !important;
+  flex: none !important;
+  align-items: center !important;
+  width: 50% !important;
+  position: absolute !important;
+  top: 66% !important;
+  right: 25% !important;}
+  /* pushes it 0.5rem *below* its anchor point */
+
+
+
+/* .rhap_container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: inherit;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 15px !important;
+  background-color: #fff;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+} */
+
+/* .rhap_controls-section {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7.75rem !important;
+  position: relative !important;
+  top: -13% !important;
+}
+
+.rhap_stacked .rhap_controls-section {
+  margin-top: 0px !important;
+} */
+
+/* .rhap_additional-controls {
+  display: flex !important;
+  flex: none !important;
+  position: relative !important;
+
+  /* align-items: center; */
+/* .rhap_additional-controls .css-0 {
+    position: absolute !important;
+    left: 45% !important;
+    bottom: 37% !important;
+  } */
+
+/* .rhap_volume-controls {
+  display: flex !important;
+  flex: none !important;
+} */
+
+
+/* .rhap_main-controls {
+  flex: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: absolute !important;
+  right: 45% !important;
+  bottom: 13% !important;
+} */
+
+
+.rhap_container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: inherit;
+  width: 100%;
+  padding: 2px 15px !important;
+  background-color: black !important;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  border-top: 0.13rem solid gray !important;
+}
+
+.rhap_controls-section {
+  display: flex;
+  flex: none !important;
+  justify-content: space-between;
+  align-items: center;
+  position: relative !important;
+}
+
+
+.rhap_stacked .rhap_controls-section {
+  margin-top: 2px !important;
+}
+
+.rhap_main-controls {
+  flex: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute !important;
+  right: 48% !important;
+  top: 4% !important;
+}
+
+.rhap_additional-controls .css-0 {
+  position: absolute !important;
+  top: 25% !important;
+  left: 42% !important;
+}
+
+.rhap_additional-controls .css-10xcant {
+  background: black !important;
+  color: white !important;
+}
+
+.rhap_progress-section {
+  display: flex;
+  flex: none !important;
+  align-items: center;
+  position: absolute !important;
+  width: 50% !important;
+  bottom: 1% !important;
+  right: 27% !important;
+}
+
+.rhap_main-controls-button {
+
+  color: white !important;
+}
+
+.rhap_container svg {
+  vertical-align: initial;
+  color: white !important;
+}
+
+.rhap_progress-bar-show-download {
+  background-color: white !important;
+}
+
+.rhap_progress-indicator {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 3;
+  width: 13px !important;
+  height: 13px !important;
+  margin-left: -10px;
+  top: -4px;
+  /* left: -2%; */
+  background: #34C94b !important;
+  border-radius: 50px;
+  box-shadow: rgba(134, 134, 134, 0.5) 0 0 5px;
+}
+
+.rhap_progress-filled {
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background: #34C94b !important;
+  border-radius: 2px;
+}
+
+.rhap_time {
+  color: black !important;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.rhap_volume-indicator {
+  box-sizing: border-box;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  left: 0;
+  top: -4px;
+  background: #34C94b !important;
+  opacity: 0.9;
+  border-radius: 50px;
+  box-shadow: rgba(134, 134, 134, 0.5) 0 0 3px;
+  cursor: pointer;
+}

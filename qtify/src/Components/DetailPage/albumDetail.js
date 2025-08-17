@@ -106,7 +106,7 @@ export default function AlbumDetail({ id, type }) {
                 </Box>
             </Box>
 
-            <Box sx={ { marginTop: '5.5rem' } }>
+            <Box sx={ { marginTop: '5.5rem',pb:2 } }>
                 <SongsTable songs={ songs } />
             </Box>
 
