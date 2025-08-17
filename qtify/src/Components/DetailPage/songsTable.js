@@ -32,6 +32,22 @@ export default function SongsTable({ songs }) {
         dispatch(playerActions.setCurrentSong(song));
         console.log("Playing song:", song.title);
         dispatch(playerActions.setIsPlaying(true));
+        dispatch(playerActions.setPlayList([...currentPageSongs]));
+
+        let songDurationFormatted = formatDuration(song.durationInMs);
+        let timeMatched = songDurationFormatted.match(/(\d+)min\s+(\d+)\s*sec/);
+
+        if (timeMatched) {
+            // "1:55"
+            dispatch(playerActions.setDuration({ min: timeMatched[1], sec: timeMatched[2] }));
+        } else {
+            let songSec = songDurationFormatted.match(/\d+/);
+            console.log("Song Seconds:", songSec);
+            if (songSec) {
+                // "55"
+                dispatch(playerActions.setDuration({ sec: songSec[0] }));
+            }
+        }
     }
     return (
         <>

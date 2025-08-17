@@ -2,12 +2,27 @@ import React from 'react';
 import { Box } from "@mui/material";
 import 'react-h5-audio-player/lib/styles.css';
 import AudioPlayer from 'react-h5-audio-player';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaRandom } from 'react-icons/fa';
 import "./audio.css";
-
+import { playerActions } from '../../Slices/playerSlice';
 export default function Audio() {
+
+    let dispatch = useDispatch();
+
     const currentSong = useSelector(state => state.player.currentSong);
+    // const currentTime = useSelector(state => state.player.currentTime);
+    const duration = useSelector(state => state.player.duration);
+    // const isPlaying = useSelector(state => state.player.isPlaying);
+    // const currentTime = useSelector(state => state.player.currentTime);
+    // const volume = useSelector(state => state.player.volume);
+    // const repeat = useSelector(state => state.player.repeat);
+    // const shuffle = useSelector(state => state.player.shuffle);
+
+
+
+    // const numDuration = duration.match(/\d+/)[0];   // "55"
+    // const text = str.match(/[a-zA-Z]+/)[0]; // "sec"
 
     const songInfo = currentSong && (
         <Box
@@ -71,17 +86,62 @@ export default function Audio() {
         </Box>
     );
 
+    const showDuration = currentSong && (
+        <Box sx={ {
+            position: 'absolute',
+            right: '27.5%',
+            bottom: '9%',
+            color: 'white',
+            fontSize: '0.8rem'
+        } }>
+            <span >{ duration.min ? duration.min + " : " + duration.sec : duration.sec }</span>
+        </Box >
+
+    );
+
+    // function timer(value) {
+
+    //     let runTimer = setInterval(() => {
+    //         if (isPlaying) {
+    //             let seconds = currentTime.sec < 60 ? currentTime.sec + 1 : 0;
+    //             let minutes = currentTime.sec === 60 ? currentTime.min + 1 : currentTime.min;
+    //             dispatch(playerActions.setCurrentTime({ min: minutes, sec: seconds }));
+    //         }
+    //     }, 1000);
+    //     return () => clearInterval(runTimer);
+    // }
+
+    // const showTimer = isPlaying && (
+    //     <Box>
+    //         <span>{ `${currentTime.min}:${currentTime.sec}` }</span>
+    //     </Box>
+    // )
+
     return (
         <Box sx={ { position: 'sticky', width: '100%', display: 'flex', justifyContent: 'center', bottom: 0, zIndex: 1, height: 'auto' } }>
             <AudioPlayer
                 autoPlay
-                src="audio.mp3"
-                onPlay={ e => console.log("onPlay") }
+                src="/songFile/[iSongs.info] 01 - Samajavaragamana.mp3"
+                onPlay={ () => dispatch(playerActions.setIsPlaying(true)) }
+                onPause={ () => dispatch(playerActions.setIsPlaying(false)) }
                 customAdditionalControls={ [
                     ...(songInfo ? [songInfo] : []),
-                    shuffleButton
+                    shuffleButton,
+                    showDuration,
+                    
                 ] }
+                onListen={ (e) =>
+                    dispatch(
+                        playerActions.setCurrentTime({
+                            min: Math.floor(e.target.currentTime / 60),
+                            sec: Math.floor(e.target.currentTime % 60),
+                        })
+                    )
+                }
+                listenInterval={ 1000 }
+                showTimer
             />
+
         </Box>
     );
 }

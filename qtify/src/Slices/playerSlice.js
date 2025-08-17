@@ -5,9 +5,10 @@ const playerSlice = createSlice({
     name: "player",
     initialState: {
         currentSong: {},
+        playList: [],
         isPlaying: false,
-        currentTime: 0,
-        duration: 0,
+        currentTime: { min: 0, sec: 0 },
+        duration: { min: 0, sec: 0 },
         volume: 1,
         repeat: 'all',
         shuffle: false,
@@ -33,7 +34,11 @@ const playerSlice = createSlice({
         },
         setShuffle: (state, action) => {
             state.shuffle = action.payload;
+        },
+        setPlayList: (state, action) => {
+            state.playList = action.payload;
         }
+
     }
 })
 
