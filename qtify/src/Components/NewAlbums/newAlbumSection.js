@@ -16,11 +16,11 @@ export default function NewAlbum() {
             const result = await dispatch(fetchNewAlbums());
             console.log("Result of fetchNewAlbums:", result);
 
-            if (fetchNewAlbums.fulfilled.match(result)) {
-                console.log("New Albums Loaded:", result.payload);
-            } else {
-                console.error("Error loading albums:", result.error.message);
-            }
+            // if (fetchNewAlbums.fulfilled.match(result)) {
+            //     console.log("New Albums Loaded:", result.payload);
+            // } else {
+            //     console.error("Error loading albums:", result.error.message);
+            // }
         }
         fetchAlbums();
     }, [dispatch]);

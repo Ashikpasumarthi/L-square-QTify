@@ -15,7 +15,7 @@ export default function TopAlbumsSwiper({ albums, type }) {
     // let topAlbums = useSelector((state) => state.topAlbums.topAlbums);
 
 
-    console.log("Top Albums in Swiper", albums);
+    // console.log("Top Albums in Swiper", albums);
     return (
         <div className={ styles.carouselContainer }>
 

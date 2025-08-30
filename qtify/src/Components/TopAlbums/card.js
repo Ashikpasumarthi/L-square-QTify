@@ -7,15 +7,15 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { FaPlayCircle } from 'react-icons/fa';
 import { Box } from "@mui/material";
-export default function CardTile({ id, follows, image, title, type, album }) {
-  const cardDetails = useSelector((state) => state.topAlbums.topAlbums);
-  console.log("CardTile details:", cardDetails);
-  console.log("CardTile props:", { id, follows, image, title });
+export default function CardTile({ id, follows, image, title, type }) {
+  // const cardDetails = useSelector((state) => state.topAlbums.topAlbums);
+  // console.log("CardTile details:", cardDetails);
+  // console.log("CardTile props:", { id, follows, image, title });
   const theme = createTheme();
   let navigate = useNavigate();
   return (
@@ -97,7 +97,7 @@ export default function CardTile({ id, follows, image, title, type, album }) {
           backgroundColor: 'rgba(0, 0, 0, 0.7)',
           color: 'white',
           padding: '0.1rem',
-          height:'auto'
+          height: 'auto'
         } }>
           <Typography gutterBottom variant="h3" component="div" sx={ { fontSize: '0.8rem', textAlign: 'start' } }>
             { title }

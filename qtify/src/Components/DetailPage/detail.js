@@ -11,7 +11,7 @@ const CardDetail = () => {
     const [searchParams] = useSearchParams();
     const type = searchParams.get("type");
     const navigate = useNavigate();   // useHistory is replated with useNavigate in react-router v6
-    console.log("CardDetail id:", id);
+    // console.log("CardDetail id:", id);
     const goBack = () => {
         navigate(-1)
         dispatch(setSongsPage(1))

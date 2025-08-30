@@ -16,11 +16,11 @@ export default function TabsComponent() {
     const topAlbums = useSelector((state) => state.topAlbums.topAlbums);
     const tabsLabelRaw = useSelector((state) => state.tabs.tabs);
     const tabsLabel = React.useMemo(() => {
-        return [{ label: 'All' },...tabsLabelRaw];
+        return [{ label: 'All' }, ...tabsLabelRaw];
     }, [tabsLabelRaw]);
     // tabsLabel.sort((a, b) => a.label.localeCompare(b.label));
 
-    console.log("Tabs in component", tabsLabel);
+    // console.log("Tabs in component", tabsLabel);
 
     const [value, setValue] = React.useState(0);
     // const [filterSongs, setFilterSongs] = React.useState([]);
@@ -32,18 +32,18 @@ export default function TabsComponent() {
             const result = await dispatch(fetchTabs());
             console.log("Result of fetchingTabs:", result);
 
-            if (fetchTabs.fulfilled.match(result)) {
-                console.log("Tabs loaded:", result.payload);
-            } else {
-                console.error("Error loading tabs:", result.error.message);
-            }
+            // if (fetchTabs.fulfilled.match(result)) {
+            //     console.log("Tabs loaded:", result.payload);
+            // } else {
+            //     console.error("Error loading tabs:", result.error.message);
+            // }
         }
         fetchingTabs();
     }, [dispatch]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        console.log("Tab changed to:", value);
+        // console.log("Tab changed to:", value);
     };
 
     const filterSongs = React.useMemo(() => {
@@ -59,7 +59,7 @@ export default function TabsComponent() {
 
 
     console.log('Filtered songs:', filterSongs);
-    
+
 
     return (
 
@@ -67,7 +67,7 @@ export default function TabsComponent() {
         <Box sx={ {
             width: '100%', background: 'black', color: 'white',
         } }>
-            <TabContext value={ value } sx =  {{display: 'flex', rowGap: '1rem'}}>
+            <TabContext value={ value } sx={ { display: 'flex', rowGap: '1rem' } }>
                 <Box sx={ { borderBottom: 1, borderColor: 'black' } }>
                     <TabList onChange={ handleChange } >
                         { tabsLabel.map((tab, index) => (
@@ -77,7 +77,7 @@ export default function TabsComponent() {
                 </Box>
 
                 <TabPanel value={ value }>
-                    <Swiper albums={ filterSongs } type="song"/>
+                    <Swiper albums={ filterSongs } type="song" />
                 </TabPanel>
 
             </TabContext>

@@ -13,19 +13,20 @@ export default function HomePage() {
   const [expandAlbums, setExpandAlbums] = useState(false);
   const dispatch = useDispatch();
   const topAlbums = useSelector((state) => state.topAlbums.topAlbums);
-  console.log("Top Albums in Section", topAlbums);
+  // console.log("Top Albums in Section", topAlbums);
   useEffect(() => {
 
     async function fetchAlbums() {
       console.log("Fetching top albums...");
 
       const result = await dispatch(fetchTopAlbums());
+      console.log("Result of fetching top albums:", result)
 
-      if (fetchTopAlbums.fulfilled.match(result)) {
-        console.log("Albums loaded:", result.payload);
-      } else {
-        console.error("Error loading albums:", result.error.message);
-      }
+      // if (fetchTopAlbums.fulfilled.match(result)) {
+      //   console.log("Albums loaded:", result.payload);
+      // } else {
+      //   console.error("Error loading albums:", result.error.message);
+      // }
     }
 
     fetchAlbums();
@@ -35,7 +36,7 @@ export default function HomePage() {
 
   function expandHandler() {
     setExpandAlbums(!expandAlbums);
-    console.log("Expand state changed:", !expandAlbums);
+    // console.log("Expand state changed:", !expandAlbums);
   }
 
   return (
@@ -67,7 +68,7 @@ export default function HomePage() {
           } }><h6>New Albums</h6></Box>
         <NewAlbum />
       </div>
-      <div style={ { backgroundColor: 'black', color: 'white',paddingBottom:'2rem',height:'auto' } }>
+      <div style={ { backgroundColor: 'black', color: 'white', paddingBottom: '2rem', height: 'auto' } }>
         <Box
           sx={ {
             display: 'flex',

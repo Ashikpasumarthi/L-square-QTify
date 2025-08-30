@@ -13,7 +13,7 @@ export default function FeedbackButton() {
     
     const formattedLabel = capitalizedWords.join(" "); 
 
-    console.log(formattedLabel); 
+    // console.log(formattedLabel); 
     return (
         <>
             <Button className={ styles.feedbackButton }><span>{ formattedLabel }</span></Button>

@@ -16,17 +16,17 @@ export default function AlbumDetail({ id, type }) {
 
     // 2. Once rehydrated, now it's safe to find the album
     const album = type === "topAlbums" ? topAlbums.find((ele) => ele.id === id.split(':')[1]) : newAlbums.find((ele) => ele.id === id.split(':')[1]);
-    console.log("Album Detail for ID:", id, "Found Album:", album);
+    // console.log("Album Detail for ID:", id, "Found Album:", album);
 
     let { songs } = album;
-    console.log("Songs in Album:", songs);
+    // console.log("Songs in Album:", songs);
 
     let totalDuration = 0;
     songs.forEach(song => {
         totalDuration += song.durationInMs;
     })
 
-    console.log("Total Duration of Album:", totalDuration);
+    // console.log("Total Duration of Album:", totalDuration);
 
     function formatDuration(duration) {
         const totalSeconds = Math.floor(duration / 1000);

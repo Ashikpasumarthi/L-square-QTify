@@ -21,7 +21,7 @@ export default function SongsTable({ songs }) {
     const dataPerPage = 10;
     // const [page, setPage] = React.useState(1);
     const page = useSelector(state => state.pagination.songsPage);
-    console.log("Current Page:", page);
+    // console.log("Current Page:", page);
 
     let lastIndex = page * dataPerPage;
     let firstIndex = lastIndex - dataPerPage;
@@ -30,7 +30,7 @@ export default function SongsTable({ songs }) {
 
     function handlePlaySong(song) {
         dispatch(playerActions.setCurrentSong(song));
-        console.log("Playing song:", song.title);
+        // console.log("Playing song:", song.title);
         dispatch(playerActions.setIsPlaying(true));
         dispatch(playerActions.setPlayList([...currentPageSongs]));
 
