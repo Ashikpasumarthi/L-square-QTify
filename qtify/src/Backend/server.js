@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const dotenv = require('dotenv');
-const { spotifyRouter } = require("./Routes/qtifyRoutes");
+const spotifyRouter = require("./Routes/qtifyRoutes");
 
 const cors = require('cors');
 

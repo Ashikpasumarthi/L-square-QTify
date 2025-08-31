@@ -4,17 +4,25 @@ import { ThemeProvider, createTheme, StyledEngineProvider } from "@mui/material"
 import Navbar from "./Components/Navbar/Navbar";
 import Audio from "./Components/Audio/audio";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { fetchToken } from "./Slices/token";
 
 const theme = createTheme();
 
 function App() {
-  // Select only what you need
-  const token = useSelector(state => state.token.value);
+
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.token.value);
+  const status = useSelector((state) => state.token.status);
+  useEffect(() => {
+    dispatch(fetchToken());
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log("App component rendered, token:", token);
-  }, [token]);
+    console.log("Token updated in Redux:", token, "Status:", status);
+  }, [token, status]);
+
 
   return (
     <StyledEngineProvider injectFirst>

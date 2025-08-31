@@ -13,12 +13,11 @@ async function getToken(req, res) {
 }
 
 async function searchSongs(req, res) {
-    const { query, type, token } = req.body; 
-    
+    const { query, type, token } = req.body;
 
-    try{
-        
-        const searchResults = await SpotifyService.searchSongs(query,type,token);
+    try {
+
+        const searchResults = await SpotifyService.searchQuery(query,type,token);
         res.json(searchResults);
     }
     catch(error){

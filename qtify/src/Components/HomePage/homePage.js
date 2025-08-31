@@ -8,6 +8,7 @@ import { fetchTopAlbums } from "../../Slices/topAlbums";
 import NewAlbum from "../NewAlbums/newAlbumSection";
 import { Box } from '@mui/material';
 import Swiper from "../TopAlbums/topAlbumsSwiper";
+import SpotifySongs from "../SpotifySongs/spotifySongs";
 
 export default function HomePage() {
   const [expandAlbums, setExpandAlbums] = useState(false);
@@ -20,7 +21,7 @@ export default function HomePage() {
       console.log("Fetching top albums...");
 
       const result = await dispatch(fetchTopAlbums());
-      console.log("Result of fetching top albums:", result)
+      console.log("Result of fetching top albums:", result);
 
       // if (fetchTopAlbums.fulfilled.match(result)) {
       //   console.log("Albums loaded:", result.payload);
@@ -76,6 +77,15 @@ export default function HomePage() {
             padding: { xs: '1rem 2rem', md: '1rem 2rem' },
           } }><h6>Songs</h6></Box>
         <Tabs />
+      </div>
+      <div style={ { backgroundColor: 'black', color: 'white', paddingBottom: '2rem', height: 'auto' } }>
+        <Box
+          sx={ {
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: { xs: '1rem 2rem', md: '1rem 2rem' },
+          } }><h6>Telugu Albums</h6></Box>
+        <SpotifySongs />
       </div>
 
     </div>
