@@ -13,7 +13,7 @@ export const fetchToken = createAsyncThunk(
 
 const tokenSlice = createSlice({
     name: "token",
-    initialState: { value: null, status: "idle", error: null },
+    initialState: { value: '', status: "idle", error: null },
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -22,7 +22,7 @@ const tokenSlice = createSlice({
             })
             .addCase(fetchToken.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.value = action.payload.access_token;
+                state.value = action.payload.access_token || action.payload; // store token string
                 console.log('Actions testing :', action);
                 console.log("Token stored in Redux:", state.value);
             })
