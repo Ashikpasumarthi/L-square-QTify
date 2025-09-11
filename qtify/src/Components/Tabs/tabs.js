@@ -58,7 +58,7 @@ export default function TabsComponent() {
     }, [value, tabsLabel, topAlbums]);
 
 
-    console.log('Filtered songs:', filterSongs);
+    // console.log('Filtered songs:', filterSongs);
 
 
     return (

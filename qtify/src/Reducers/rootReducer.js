@@ -5,7 +5,7 @@ import { newAlbumsSliceReducer } from '../Slices/newAlbum';
 import { paginationSliceReducer } from '../Slices/pagination';
 import { playerReducer } from '../Slices/playerSlice';
 import spotifySongsReducer from '../Slices/spotifyRealSongs';
-import tokenReducer from '../Slices/token';
+import {tokenReducer} from '../Slices/token';
 
 const reducerMappings = {
     topAlbums: topAlbumSliceReducer,

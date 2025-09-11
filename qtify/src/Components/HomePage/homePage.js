@@ -32,7 +32,7 @@ export default function HomePage() {
 
     fetchAlbums();
 
-  }, [dispatch, topAlbums]);
+  }, [dispatch]);
 
 
   function expandHandler() {

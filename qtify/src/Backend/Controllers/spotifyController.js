@@ -13,14 +13,15 @@ async function getToken(req, res) {
 }
 
 async function searchSongs(req, res) {
-    const { query, type, token } = req.body;
+    const { query, type} = req.query;
+
+    const token = req.headers['authorization']?.split(' ')[1];
 
     try {
-
+        console.log("Calling service with:", { query, type, token });
         const searchResults = await SpotifyService.searchQuery(query,type,token);
         res.json(searchResults);
-    }
-    catch(error){
+    } catch(error){
         console.error("Error fetching search results:", error);
         res.status(500).json({ error: "Failed to fetch search results" });
     }

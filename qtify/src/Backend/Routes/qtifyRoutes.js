@@ -3,6 +3,6 @@ const router = express.Router();
 const { getToken, searchSongs } = require("../Controllers/spotifyController");
 
 router.post("/token", getToken);
-router.post("/search", searchSongs);
+router.get("/search", searchSongs);
 
 module.exports = router;

@@ -7,18 +7,18 @@ class SpotifyService {
 
         const auth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
         try {
-            const response = await fetch("https://accounts.spotify.com/api/token", {    //FLOWER BRACES IS MANDATORY SINCE ITS AN OBJECT 
-                method: 'POST',
-                headers: {
-                    Authorization: `Basic ${auth}`,
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: "grant_type=client_credentials"
-            })
+            const response = await axios.post(
+                "https://accounts.spotify.com/api/token",
+                "grant_type=client_credentials",
+                {
+                    headers: {
+                        Authorization: `Basic ${auth}`,
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    }
+                }
+            );
+            return response.data;
 
-            const data = await response.json();
-
-            return data
         } catch (error) {
             console.error("Error fetching access token:", error);
             throw new Error("Failed to fetch access token");
@@ -38,15 +38,17 @@ class SpotifyService {
                     limit: 20
                 }
             });
-            const data = await response.json();
-            return data;
+            return response.data;
         }
         catch (error) {
+            // FIX: Log the detailed error response from Spotify
+            console.error("💥 Spotify API Request Failed:", error.response?.data || error.message);
+
+            // You can still throw the generic error to be caught by the controller
             throw new Error("Failed to fetch search results");
         }
-
     }
-}
+};
 
 module.exports = { SpotifyService };
 

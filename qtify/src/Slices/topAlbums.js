@@ -18,7 +18,8 @@ const topAlbumSlice = createSlice({
     initialState: {
         topAlbums: [],
         isLoading: false,
-        isError: false
+        isError: false,
+        status: 'idle'
     },
     reducers: {
         setTopAlbums: (state, action) => {

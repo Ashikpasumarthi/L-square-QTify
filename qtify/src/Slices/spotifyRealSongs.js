@@ -12,10 +12,14 @@ export const fetchSpotifySongs = createAsyncThunk(
             // const tokenResponse = await thunkAPI.dispatch(fetchToken()).unwrap(); // unwrap is used to get the token value
 
             // Then fetch songs
-            const response = await axios.post(
+            console.log("Fetching Spotify songs with token:", token);
+            const response = await axios.get(
                 "http://localhost:5000/api/spotify/search",
-                { query, type, token },
                 {
+                    params: {
+                        query: query,
+                        type: type,
+                    },
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -49,7 +53,8 @@ const spotifySongs = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchSpotifySongs.fulfilled, (state, action) => {
-                state.songs = action.payload;
+                console.log("Fetched Spotify songs:", action.payload);
+                state.songs = action.payload.artists.items;
                 state.isLoading = false;
                 state.isError = false;
             })
