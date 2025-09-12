@@ -54,7 +54,7 @@ const spotifySongs = createSlice({
             })
             .addCase(fetchSpotifySongs.fulfilled, (state, action) => {
                 console.log("Fetched Spotify songs:", action.payload);
-                state.songs = action.payload.artists.items;
+                state.songs = action.payload.albums.items;
                 state.isLoading = false;
                 state.isError = false;
             })

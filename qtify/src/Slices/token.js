@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchToken = createAsyncThunk(
     "token/fetchToken",
     async () => {
-        const response = await axios.post("http://localhost:5000/api/spotify/token");
+        const response = await axios.post("https://qtify-music-app-backend.el.r.appspot.com/api/spotify/token");
         console.log("Token response from backend:", response.data);
         return response.data; // store token string
     }

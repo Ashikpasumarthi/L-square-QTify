@@ -5,6 +5,7 @@ import Logo from "../Logo/logo";
 import Search from "../Search/search";
 import styles from "./Navbar.module.css";
 import Button from "../Button/button";
+import SpotifyRedirectButton from "../SpotifyButton/spotifyRedirectButton";
 // import Grid from "@mui/material/Grid";
 // import Box from "@mui/material/Box";
 // import { styled } from "@mui/material/styles";
@@ -43,13 +44,15 @@ function Navbar() {
       <div className={ `container-fluid ${styles.navbar}` }>
         <div className="row text-center align-items-center" style={ { position: "relative", top: "1rem" } }>
 
-          <div className="col text-start" style={{width: 'fit-content'}}>
+          <div className="col text-start" style={ { width: 'fit-content' } }>
             <Link to="/"><Logo /></Link>
           </div>
           <div className="col text-center">
             <Search />
           </div>
-          <div className="col text-end">
+
+          <div className="col text-end d-flex justify-content-end align-items-center gap-3">
+            <SpotifyRedirectButton />
             <Button />
           </div>
         </div>

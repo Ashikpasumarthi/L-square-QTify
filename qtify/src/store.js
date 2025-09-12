@@ -7,7 +7,7 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['topAlbums', 'newAlbums', 'player', 'token'] // exclusively persisting topAlbums and newAlbums slices
+    whitelist: ['topAlbums', 'newAlbums', 'player'] // exclusively persisting topAlbums and newAlbums slices
 
 }
 const rootReducer = combineReducers(reducerMappings);
