@@ -41,15 +41,41 @@ class SpotifyService {
             return response.data;
         }
         catch (error) {
-            // FIX: Log the detailed error response from Spotify
+
             console.error("💥 Spotify API Request Failed:", error.response?.data || error.message);
 
-            // You can still throw the generic error to be caught by the controller
+
             throw new Error("Failed to fetch search results");
         }
     }
-};
 
+    static async handleCallbackForToken(code) {
+        const clientId = "5ebf027c9d65420fb9abd7021df1c055";
+        const clientSecret = "51e305de70a949a08deff7dbfddd0455";
+
+        const auth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+        const params = new URLSearchParams();
+        params.append('code', code);
+        params.append('redirect_uri', 'https://qtify-music-app-backend.el.r.appspot.com/api/spotify/callback');
+        params.append('grant_type', 'authorization_code');
+
+        try {
+            const response = await axios.post('https://accounts.spotify.com/api/token', params, {
+                headers: {
+                    Authorization: `Basic ${auth}`,
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            })
+            return response.data;
+        }
+
+
+        catch (error) {
+            console.error("💥 Spotify API Request Failed:", error.response?.data || error.message);
+            throw new Error("Failed to fetch access token");
+        }
+    }
+}
 module.exports = { SpotifyService };
 
 // 1. Buffer.from(${clientId}:${clientSecret}).toString("base64")

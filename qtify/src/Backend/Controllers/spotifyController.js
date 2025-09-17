@@ -28,7 +28,22 @@ async function searchSongs(req, res) {
 
 }
 
-module.exports = { getToken, searchSongs };
+async function callback(req, res) {
+    const {code} = req.query;
+    try {
+        console.log('Code has been found:', code);
+        const tokenData = await SpotifyService.handleCallbackForToken(code);
+        const accessToken = tokenData.access_token;
+        const expiresIn = tokenData.expires_in;
+        
+        res.redirect(`http://localhost:3000/auth/success?access_token=${accessToken}&expires_in=${expiresIn}`);
+    } catch (error) {
+        console.error("Error fetching token:", error);
+        res.status(500).json({ error: "Failed to fetch token" });
+    }
+}
+
+module.exports = { getToken, searchSongs, callback };
 
 
 

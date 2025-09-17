@@ -9,6 +9,7 @@ import HomePage from './Components/HomePage/homePage';
 import ErrorPage from "./errorPage";
 import CardDetail from './Components/DetailPage/detail';
 import { PersistGate } from 'redux-persist/integration/react';
+import AuthSuccessPage from './Components/AuthSuccessPage/authSuccess';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/card/:id',
         element: <CardDetail />
+      },
+      {
+        path: '/auth/success',
+        element: <AuthSuccessPage />
       }
     ]
   }
