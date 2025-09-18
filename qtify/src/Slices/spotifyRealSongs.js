@@ -14,7 +14,7 @@ export const fetchSpotifySongs = createAsyncThunk(
             // Then fetch songs
             console.log("Fetching Spotify songs with token:", token);
             const response = await axios.get(
-                "http://localhost:5000/api/spotify/search",
+                "https://qtify-music-app-backend.el.r.appspot.com/api/spotify/search",
                 {
                     params: {
                         query: query,
