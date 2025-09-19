@@ -8,6 +8,7 @@ import spotifySongsReducer from '../Slices/spotifyRealSongs';
 import { tokenReducer } from '../Slices/token';
 import { userTokenReducer } from '../Slices/userTokenSlice';
 import spotifyTokenSliceReducer from '../Slices/spotifyAccessTokenSlice';
+import webpackSliceReducer from '../Slices/webPackSDK';
 
 const reducerMappings = {
     topAlbums: topAlbumSliceReducer,
@@ -18,7 +19,8 @@ const reducerMappings = {
     player: playerReducer,
     pagination: paginationSliceReducer,
     userToken: userTokenReducer,
-    spotifyAccessToken: spotifyTokenSliceReducer
-}
+    spotifyAccessToken: spotifyTokenSliceReducer,
+    webPackSDK: webpackSliceReducer,
+};
 
 export default reducerMappings;

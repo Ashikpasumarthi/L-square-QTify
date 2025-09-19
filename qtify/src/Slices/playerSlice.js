@@ -12,6 +12,7 @@ const playerSlice = createSlice({
         volume: 1,
         repeat: 'all',
         shuffle: false,
+
     },
     reducers: {
         setCurrentSong: (state, action) => {

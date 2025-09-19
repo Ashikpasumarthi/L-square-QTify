@@ -24,7 +24,10 @@ import { useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { FaPlayCircle } from 'react-icons/fa';
 import { Box } from "@mui/material";
+import { playTrack } from '../../Slices/playTrackSlice';
+import { playerActions } from '../../Slices/playerSlice';
 const theme = createTheme();
+
 
 export default function SpotifySongs() {
   let navigate = useNavigate();
@@ -34,6 +37,7 @@ export default function SpotifySongs() {
   // const tokenStatus = useSelector((state) => state.token.status);
   const isLoading = useSelector((state) => state.spotifySongs.isLoading);
   const spotifyTokenSDK = useSelector((state) => state.spotifyAccessToken.spotifyAccessToken);
+  const deviceID = useSelector((state) => state.webPackSDK.deviceID);
   // console.log("New Spotify Songs in Section", newSpotify);
 
 
@@ -81,6 +85,18 @@ export default function SpotifySongs() {
     }
   }, [spotifyTokenSDK, dispatch]);
 
+
+  const handlePlay = (uri) => {
+    if (!deviceID) {
+      alert("Device not ready yet. Please try again in a moment.");
+      return;
+    }
+    console.log("Playing track with URI:", uri, "on device ID:", deviceID);
+    dispatch(playerActions.setCurrentSong({ uri: uri, name: newSpotify.find(album => album.uri === uri)?.name || 'Unknown', artists: newSpotify.find(album => album.uri === uri)?.artists || [] }));
+    dispatch(playerActions.setIsPlaying(true));
+    dispatch(playTrack({ spotifyUri: uri, deviceId: deviceID, token: spotifyTokenSDK }));
+
+  }
 
 
 
@@ -177,7 +193,7 @@ export default function SpotifySongs() {
                         }
 
                       } }>
-                        <FaPlayCircle />
+                        <FaPlayCircle onClick={ () => handlePlay(album.uri) } />
                       </Box>
                     </Stack>
                   </ThemeProvider>

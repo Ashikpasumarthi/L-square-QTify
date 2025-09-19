@@ -148,13 +148,19 @@
 
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Box } from "@mui/material";
+// import { Box } from "@mui/material";
 import 'react-h5-audio-player/lib/styles.css';
 import AudioPlayer from 'react-h5-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaRandom } from 'react-icons/fa';
 import "./audio.css";
 import { playerActions } from '../../Slices/playerSlice';
+import { Box, Slider, IconButton, Typography, Stack } from '@mui/material';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import { playTrack, pauseTrack, nextTrack, previousTrack } from '../../Slices/playTrackSlice';
 
 export default function Audio() {
     const dispatch = useDispatch();
@@ -163,6 +169,8 @@ export default function Audio() {
     const currentSong = useSelector(state => state.player.currentSong);
     const duration = useSelector(state => state.player.duration);
     const isPlaying = useSelector(state => state.player.isPlaying);
+    const deviceID = useSelector(state => state.webPackSDK.deviceID);
+    const token = useSelector(state => state.spotifyAccessToken.spotifyAccessToken);
 
     // Local state for timer to prevent Redux flooding
     const [currentTime, setCurrentTime] = useState({ min: 0, sec: 0 });
@@ -235,28 +243,109 @@ export default function Audio() {
         );
     }, [currentSong, duration]);
 
+    function handleTogglePlay() {
+        if (isPlaying === false) {
+
+            dispatch(playTrack({ uri: currentSong.uri, deviceID: deviceID, token: token }));
+        } else {
+
+            dispatch(pauseTrack({ deviceID: deviceID, token: token }));
+
+        }
+    }
+
+    const handleNext = () => {
+        dispatch(nextTrack({ deviceID, token }));
+    };
+
+    const handlePrevious = () => {
+        dispatch(previousTrack({ deviceID, token }));
+    };
+
+    // const handleSeek = (event, newValue) => {
+    //     // Debounce this in a real app to avoid too many API calls
+    //     const positionMs = Math.round(newValue);
+    //     dispatch(seekTrack({ positionMs, deviceID, token }));
+    // };
+
+    if (!currentSong) {
+        return (
+            <Box sx={ { position: 'sticky', width: '100%', display: 'flex', justifyContent: 'center', bottom: 0, zIndex: 1, height: 'auto' } }>
+                <AudioPlayer
+                    autoPlay
+                    src="/songFile/[iSongs.info] 01 - Samajavaragamana.mp3"
+                    onPlay={ () => dispatch(playerActions.setIsPlaying(true)) }
+                    onPause={ () => dispatch(playerActions.setIsPlaying(false)) }
+                    customAdditionalControls={ [
+                        ...(songInfo ? [songInfo] : []),
+                        shuffleButton,
+                        showDuration,
+                    ] }
+                    onListen={ (e) => {
+                        myRef.current = {
+                            min: Math.floor(e.target.currentTime / 60),
+                            sec: Math.floor(e.target.currentTime % 60),
+                        };
+                    } }
+                    listenInterval={ 1000 }
+                    showJumpControls={ false }
+                    showSkipControls={ true }
+                />
+            </Box>
+        );
+    }
+
     return (
-        <Box sx={ { position: 'sticky', width: '100%', display: 'flex', justifyContent: 'center', bottom: 0, zIndex: 1, height: 'auto' } }>
-            <AudioPlayer
-                autoPlay
-                src="/songFile/[iSongs.info] 01 - Samajavaragamana.mp3"
-                onPlay={ () => dispatch(playerActions.setIsPlaying(true)) }
-                onPause={ () => dispatch(playerActions.setIsPlaying(false)) }
-                customAdditionalControls={ [
-                    ...(songInfo ? [songInfo] : []),
-                    shuffleButton,
-                    showDuration,
-                ] }
-                onListen={ (e) => {
-                    myRef.current = {
-                        min: Math.floor(e.target.currentTime / 60),
-                        sec: Math.floor(e.target.currentTime % 60),
-                    };
-                } }
-                listenInterval={ 1000 }
-                showJumpControls={ false }
-                showSkipControls={ true }
-            />
-        </Box>
-    );
+        <>
+            <Box sx={ { display: 'flex', alignItems: 'center', gap: 2, width: '25%' } }>
+                <img
+                    // src={ currentSong.album.images[0]?.url }
+                    alt={ currentSong.name }
+                    style={ { width: '56px', height: '56px' } }
+                />
+                <Box>
+                    <Typography sx={ { fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }>
+                        { currentSong.name }
+                    </Typography>
+                    {/* <Typography sx={ { fontSize: '0.7rem', color: '#b3b3b3', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }>
+                        { currentSong.artists[0]?.name }
+                    </Typography> */}
+                </Box>
+            </Box>
+
+
+            <Box sx={ { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
+                <Stack direction="row" spacing={ 1 } alignItems="center">
+                    <IconButton onClick={ handlePrevious } sx={ { color: 'white' } }>
+                        <SkipPreviousIcon />
+                    </IconButton>
+                    <IconButton onClick={ handleTogglePlay } sx={ { color: 'white', width: '40px', height: '40px', backgroundColor: 'white', '&:hover': { backgroundColor: '#f0f0f0' } } }>
+                        { isPlaying ? <PauseIcon /> : <PlayArrowIcon /> }
+                    </IconButton>
+                    <IconButton onClick={ handleNext } sx={ { color: 'white' } }>
+                        <SkipNextIcon />
+                    </IconButton>
+                </Stack>
+                {/* <Stack direction="row" spacing={ 2 } alignItems="center" sx={ { width: '100%', color: '#b3b3b3' } }>
+                    <Typography sx={ { fontSize: '0.7rem' } }>{ new Date(currentTime).toISOString().substr(14, 5) }</Typography>
+                    <Slider
+                        value={ currentTime }
+                        max={ duration }
+                        onChange={ handleSeek }
+                        sx={ { color: 'white' } }
+                        size="small"
+                    />
+                    <Typography sx={ { fontSize: '0.7rem' } }>{ new Date(duration).toISOString().substr(14, 5) }</Typography>
+                </Stack> */}
+                <Slider
+                    value={ currentTime }
+                    max={ duration }
+
+                />
+            </Box>
+        </>
+
+    )
+
+
 }
